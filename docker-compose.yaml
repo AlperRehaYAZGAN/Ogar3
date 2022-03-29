@@ -1,0 +1,51 @@
+# Sample docker-compose.yml file for traefik, wordpress, and mysql
+version: '3'
+
+services:
+  traefikapp:
+    image: traefik:v2.5
+    networks:
+      - alyafnnet
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - traefikssl_data:/acme_data/
+      - traefikssl_access_log:/home/support
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+    command: --configfile=/etc/traefik/traefik.yml
+  ogar3app:
+    image: alperreha/ogar3:1.0.1
+    networks:
+      - alyafnnet
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - traefikapp
+    environment:
+      AGAR_MASTER_PORT: 8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ogarserverssl.entrypoints=web
+      - traefik.http.routers.ogarserverhttp.rule=Host(`${MYDOMAIN}`)
+      - traefik.http.routers.ogarserverssl.entrypoints=websecure
+      - traefik.http.routers.ogarserverssl.rule=Host(`${MYDOMAIN}`)`)      
+      - traefik.http.routers.ogarserverssl.tls=true
+      - traefik.http.routers.ogarserverssl.tls.certresolver=myresolver
+      - traefik.http.services.ogarservice.loadbalancer.server.port=8080
+      - traefik.http.middlewares.ogarapp-redirectscheme.redirectscheme.scheme=https
+      - traefik.http.middlewares.ogarapp-redirectscheme.redirectscheme.permanent=true
+      - traefik.http.routers.ogarappserverhttp.middlewares=ogarapp-redirectscheme@docker
+
+volumes:
+  traefikssl_data: {}
+  traefikssl_access_log: {}
+
+# network: alyafnnet
+networks:
+  alyafnnet:
+    name: alyafnnet
+    driver: bridge

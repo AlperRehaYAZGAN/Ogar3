@@ -1,6 +1,6 @@
 {
-  "name": "Ogar",
-  "version": "1.0.0",
+  "name": "Ogar3-Dockerized",
+  "version": "1.0.1",
   "description": "Open source Agar.io server",
   "main": "index.js",
   "dependencies": {
@@ -21,6 +21,9 @@
     "url": "https://github.com/forairan/Ogar"
   },
   "author": "Devin Ryan <devin@forairan.com> (http://devin.codes/)",
+  "contributors": [
+    "Alper Reha YAZGAN <alper@yazgan.xyz> (https://alperreha.yazgan.xyz/)"
+  ],
   "license": "Apache License 2.0",
   "bugs": {
     "url": "https://github.com/forairan/Ogar/issues"

@@ -17,10 +17,11 @@ process.argv.forEach(function(val) {
     } 
 });
 
+const MASTER_PORT = process.env.AGAR_MASTER_PORT || 8080;
 if (runMaster) {
     // Initialize the master server
     var MasterServer = require('./MasterServer');
-    var master = new MasterServer(8080);
+    var master = new MasterServer(MASTER_PORT);
     master.start();
 }
 

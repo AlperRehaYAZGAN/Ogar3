@@ -1,0 +1,35 @@
+## traefik.yml
+# volumes: 
+# /acme_data/acme.json   --> /acme_data
+# /home/support/access.log.  --> /home/support/
+
+# Docker configuration backend
+providers:
+  docker:
+    defaultRule: "Host(`{{ trimPrefix `/` .Name }}.docker.localhost`)"
+
+# API and dashboard configuration
+api:
+  insecure: true
+  dashboard: true
+
+entryPoints:
+  web:
+    address: ":80"
+
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  myresolver:
+    acme:
+      email: alya@agar.example.com
+      storage: /acme_data/acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
+
+accessLog:
+  filePath: "/home/support/access.log"
+  format: json
+  bufferingSize: 100
