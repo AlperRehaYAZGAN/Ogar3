@@ -32,7 +32,7 @@ services:
       - traefik.http.routers.ogarserverssl.entrypoints=web
       - traefik.http.routers.ogarserverhttp.rule=Host(`${MYDOMAIN}`)
       - traefik.http.routers.ogarserverssl.entrypoints=websecure
-      - traefik.http.routers.ogarserverssl.rule=Host(`${MYDOMAIN}`)`)      
+      - traefik.http.routers.ogarserverssl.rule=Host(`${MYDOMAIN}`)      
       - traefik.http.routers.ogarserverssl.tls=true
       - traefik.http.routers.ogarserverssl.tls.certresolver=myresolver
       - traefik.http.services.ogarservice.loadbalancer.server.port=8080
