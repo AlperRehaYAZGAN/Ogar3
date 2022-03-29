@@ -9,7 +9,8 @@ Ogar3 - An open source Agar.io server implementation, written in Node.js.
 #### Localhost Side Usage (without proxy)
 From source
 - git clone https://github.com/AlperRehaYAZGAN/Ogar3.git
-- cd Ogar3 
+- cd Ogar3  
+- npm i  
 - node src/index.js --game  
   
 From Docker image:
