@@ -1,7 +1,7 @@
 <script>
     var httpProtocol = 'http://';
-    if (window.location.protocol === 'https:') {
-        wsProtocol = 'https://';
+    if (window.location.protocol == 'https:') {
+        httpProtocol = 'https://';
     }
     window.location.replace(httpProtocol + window.location.host + '/client');
 </script>
