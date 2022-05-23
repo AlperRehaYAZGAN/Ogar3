@@ -80,7 +80,12 @@
 <div style="font-family:'Ubuntu'">&nbsp;</div>
 <script type="text/javascript">
 
-	connect("ws://" + window.location.hostname + ":" + window.location.port)
+	var wsProtocol = 'ws://';
+	if (window.location.protocol == 'https:') {
+		wsProtocol = 'wss://';
+	}
+	
+	connect(wsProtocol + window.location.hostname + ":" + window.location.port)
 	//connect("wss://ogar-jmouloude42.c9.io/")
 </script>
 </body></html>

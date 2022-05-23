@@ -351,7 +351,13 @@
                 setTimeout(attemptConnection, 1E3)
             },
             success: function () {
-                wsConnect("ws://" + CONNECTION_URL)
+                // check host http or https for ws or wss connection
+                var wsProtocol = "ws://";
+                if (window.location.protocol == "https:") {
+                    wsProtocol = "wss://";
+                }
+                // wsConnect("ws://" + CONNECTION_URL)
+                wsConnect(wsProtocol + CONNECTION_URL)
             },
             dataType: "text",
             method: "POST",
@@ -380,7 +386,11 @@
             ws = null
         }
         var c = CONNECTION_URL;
-        wsUrl = "ws://" + c;
+        wsProtocol = "ws://";
+        if (window.location.protocol == "https:") {
+            wsProtocol = "wss://";
+        }
+        wsUrl = wsProtocol + c;
         nodesOnScreen = [];
         playerCells = [];
         nodes = {};
