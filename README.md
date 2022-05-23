@@ -14,7 +14,7 @@ From source
 - node src/index.js --game  
   
 From Docker image:
-- ``docker run --name alyaogar3 -p 8080:8080 -d alperreha/ogar3:1.0.2``
+- ``docker run --name alyaogar3 -p 8080:8080 -d alperreha/ogar3:1.0.3``
 #### Server Side Usage (with Proxy)
 For Server Usage
 - git clone https://github.com/AlperRehaYAZGAN/Ogar3.git
